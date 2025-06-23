@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: bert-sentiment-api
+    env: python
+    buildCommand: ""
+    startCommand: "python bert_sentiment_api.py"
+    envVars:
+      - key: TRANSFORMERS_CACHE
+        value: /var/cache/huggingface
