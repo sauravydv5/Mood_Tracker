@@ -6,7 +6,6 @@ import os
 app = Flask(__name__)
 CORS(app)
 
-# Force using PyTorch backend to avoid Keras issues
 sentiment_pipeline = pipeline("sentiment-analysis", framework="pt")
 
 @app.route('/x', methods=['POST'])
@@ -26,5 +25,7 @@ def analyze_sentiment():
         "confidence": score
     })
 
+# ✅ Correct final line for Render port detection
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
